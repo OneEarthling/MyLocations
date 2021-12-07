@@ -33,6 +33,16 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
         super.viewDidLoad()
         updateLabels()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.isNavigationBarHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.isNavigationBarHidden = false
+    }
 
     // MARK:- Actions
     @IBAction func getLocation() {
@@ -209,7 +219,7 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
     
     func string(from placemark: CLPlacemark) -> String {
         var line1 = ""
-        // 2
+        
         if let s = placemark.subThoroughfare {
             line1 += s + " "
         }
@@ -230,5 +240,14 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
         }
         
         return line1 + "\n" + line2
+    }
+    
+    // MARK:- Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "TagLocation" {
+            let controller = segue.destination as! LocationDetailsViewController
+            controller.coordinate = location!.coordinate
+            controller.placemark = placemark
+        }
     }
 }
