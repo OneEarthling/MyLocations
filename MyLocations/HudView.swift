@@ -15,7 +15,7 @@ class HudView: UIView {
         hudView.isOpaque = false
         view.addSubview(hudView)
         view.isUserInteractionEnabled = false
-        hudView.backgroundColor = UIColor(red: 1, green: 0, blue: 0, alpha: 0.5)
+        hudView.backgroundColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.5)
         hudView.show(animated: animated)
         return hudView
     }
@@ -72,7 +72,7 @@ class HudView: UIView {
             })
         }
         let delayInSeconds = 0.6
-        afterDelay(delayInSeconds * 2) {
+        afterDelay(delayInSeconds) {
             self.superview?.isUserInteractionEnabled = true
             self.removeFromSuperview()
         }

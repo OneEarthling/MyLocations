@@ -11,6 +11,9 @@
 		CE04A1A0275F8C0E00BF012B /* CategoryPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE04A19F275F8C0E00BF012B /* CategoryPickerViewController.swift */; };
 		CE04A1A32760938600BF012B /* HudView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE04A1A22760938600BF012B /* HudView.swift */; };
 		CE5F337727609DFF0098BDEC /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5F337627609DFF0098BDEC /* Functions.swift */; };
+		CE6285112760C4E000283886 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CE62850F2760C4E000283886 /* DataModel.xcdatamodeld */; };
+		CE6285152760C54000283886 /* Location+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6285132760C54000283886 /* Location+CoreDataClass.swift */; };
+		CE6285162760C54000283886 /* Location+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6285142760C54000283886 /* Location+CoreDataProperties.swift */; };
 		CE6753B5275E25AF00E3BE5B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6753B4275E25AF00E3BE5B /* AppDelegate.swift */; };
 		CE6753B7275E25AF00E3BE5B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6753B6275E25AF00E3BE5B /* SceneDelegate.swift */; };
 		CE6753B9275E25AF00E3BE5B /* CurrentLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6753B8275E25AF00E3BE5B /* CurrentLocationViewController.swift */; };
@@ -24,6 +27,9 @@
 		CE04A19F275F8C0E00BF012B /* CategoryPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPickerViewController.swift; sourceTree = "<group>"; };
 		CE04A1A22760938600BF012B /* HudView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HudView.swift; sourceTree = "<group>"; };
 		CE5F337627609DFF0098BDEC /* Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
+		CE6285102760C4E000283886 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		CE6285132760C54000283886 /* Location+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataClass.swift"; sourceTree = "<group>"; };
+		CE6285142760C54000283886 /* Location+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		CE6753B1275E25AF00E3BE5B /* MyLocations.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyLocations.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE6753B4275E25AF00E3BE5B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE6753B6275E25AF00E3BE5B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -83,6 +89,9 @@
 				CE04A19C275F782700BF012B /* LocationDetailsViewController.swift */,
 				CE04A19F275F8C0E00BF012B /* CategoryPickerViewController.swift */,
 				CE04A1A22760938600BF012B /* HudView.swift */,
+				CE62850F2760C4E000283886 /* DataModel.xcdatamodeld */,
+				CE6285132760C54000283886 /* Location+CoreDataClass.swift */,
+				CE6285142760C54000283886 /* Location+CoreDataProperties.swift */,
 			);
 			path = MyLocations;
 			sourceTree = "<group>";
@@ -158,10 +167,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE04A19D275F782700BF012B /* LocationDetailsViewController.swift in Sources */,
+				CE6285112760C4E000283886 /* DataModel.xcdatamodeld in Sources */,
 				CE6753B9275E25AF00E3BE5B /* CurrentLocationViewController.swift in Sources */,
 				CE04A1A32760938600BF012B /* HudView.swift in Sources */,
+				CE6285162760C54000283886 /* Location+CoreDataProperties.swift in Sources */,
 				CE5F337727609DFF0098BDEC /* Functions.swift in Sources */,
 				CE6753B5275E25AF00E3BE5B /* AppDelegate.swift in Sources */,
+				CE6285152760C54000283886 /* Location+CoreDataClass.swift in Sources */,
 				CE04A1A0275F8C0E00BF012B /* CategoryPickerViewController.swift in Sources */,
 				CE6753B7275E25AF00E3BE5B /* SceneDelegate.swift in Sources */,
 			);
@@ -363,6 +375,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		CE62850F2760C4E000283886 /* DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				CE6285102760C4E000283886 /* DataModel.xcdatamodel */,
+			);
+			currentVersion = CE6285102760C4E000283886 /* DataModel.xcdatamodel */;
+			path = DataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = CE6753A9275E25AF00E3BE5B /* Project object */;
 }
