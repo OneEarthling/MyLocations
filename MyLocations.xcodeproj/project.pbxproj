@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		CE04A19D275F782700BF012B /* LocationDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE04A19C275F782700BF012B /* LocationDetailsViewController.swift */; };
 		CE04A1A0275F8C0E00BF012B /* CategoryPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE04A19F275F8C0E00BF012B /* CategoryPickerViewController.swift */; };
+		CE04A1A32760938600BF012B /* HudView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE04A1A22760938600BF012B /* HudView.swift */; };
+		CE5F337727609DFF0098BDEC /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE5F337627609DFF0098BDEC /* Functions.swift */; };
 		CE6753B5275E25AF00E3BE5B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6753B4275E25AF00E3BE5B /* AppDelegate.swift */; };
 		CE6753B7275E25AF00E3BE5B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6753B6275E25AF00E3BE5B /* SceneDelegate.swift */; };
 		CE6753B9275E25AF00E3BE5B /* CurrentLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE6753B8275E25AF00E3BE5B /* CurrentLocationViewController.swift */; };
@@ -20,6 +22,8 @@
 /* Begin PBXFileReference section */
 		CE04A19C275F782700BF012B /* LocationDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailsViewController.swift; sourceTree = "<group>"; };
 		CE04A19F275F8C0E00BF012B /* CategoryPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPickerViewController.swift; sourceTree = "<group>"; };
+		CE04A1A22760938600BF012B /* HudView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HudView.swift; sourceTree = "<group>"; };
+		CE5F337627609DFF0098BDEC /* Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 		CE6753B1275E25AF00E3BE5B /* MyLocations.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyLocations.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE6753B4275E25AF00E3BE5B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE6753B6275E25AF00E3BE5B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -41,6 +45,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CE04A1A52760947300BF012B /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				CE6753B4275E25AF00E3BE5B /* AppDelegate.swift */,
+				CE6753B6275E25AF00E3BE5B /* SceneDelegate.swift */,
+				CE6753BF275E25B100E3BE5B /* LaunchScreen.storyboard */,
+				CE6753C2275E25B100E3BE5B /* Info.plist */,
+				CE6753BD275E25B100E3BE5B /* Assets.xcassets */,
+				CE5F337627609DFF0098BDEC /* Functions.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 		CE6753A8275E25AF00E3BE5B = {
 			isa = PBXGroup;
 			children = (
@@ -60,15 +77,12 @@
 		CE6753B3275E25AF00E3BE5B /* MyLocations */ = {
 			isa = PBXGroup;
 			children = (
-				CE6753B4275E25AF00E3BE5B /* AppDelegate.swift */,
-				CE6753B6275E25AF00E3BE5B /* SceneDelegate.swift */,
+				CE04A1A52760947300BF012B /* Common */,
 				CE6753B8275E25AF00E3BE5B /* CurrentLocationViewController.swift */,
 				CE6753BA275E25AF00E3BE5B /* Main.storyboard */,
-				CE6753BD275E25B100E3BE5B /* Assets.xcassets */,
-				CE6753BF275E25B100E3BE5B /* LaunchScreen.storyboard */,
-				CE6753C2275E25B100E3BE5B /* Info.plist */,
 				CE04A19C275F782700BF012B /* LocationDetailsViewController.swift */,
 				CE04A19F275F8C0E00BF012B /* CategoryPickerViewController.swift */,
+				CE04A1A22760938600BF012B /* HudView.swift */,
 			);
 			path = MyLocations;
 			sourceTree = "<group>";
@@ -145,6 +159,8 @@
 			files = (
 				CE04A19D275F782700BF012B /* LocationDetailsViewController.swift in Sources */,
 				CE6753B9275E25AF00E3BE5B /* CurrentLocationViewController.swift in Sources */,
+				CE04A1A32760938600BF012B /* HudView.swift in Sources */,
+				CE5F337727609DFF0098BDEC /* Functions.swift in Sources */,
 				CE6753B5275E25AF00E3BE5B /* AppDelegate.swift in Sources */,
 				CE04A1A0275F8C0E00BF012B /* CategoryPickerViewController.swift in Sources */,
 				CE6753B7275E25AF00E3BE5B /* SceneDelegate.swift in Sources */,
@@ -295,7 +311,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = MyLocations/Info.plist;
+				INFOPLIST_FILE = MyLocations/Common/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -313,7 +329,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = MyLocations/Info.plist;
+				INFOPLIST_FILE = MyLocations/Common/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
