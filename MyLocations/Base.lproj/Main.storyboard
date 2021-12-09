@@ -196,23 +196,25 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Photo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pYm-Cz-iep">
                                                     <rect key="frame" x="16" y="11.5" width="80" height="21"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vff-Oj-sIo">
-                                                    <rect key="frame" x="325" y="11.5" width="42" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="13d-Di-C8w">
+                                                    <rect key="frame" x="20" y="11" width="355" height="22"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="22" id="ydr-cA-pOs"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="Vff-Oj-sIo" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="pYm-Cz-iep" secondAttribute="trailing" constant="8" id="EQJ-a5-nCP"/>
-                                                <constraint firstItem="Vff-Oj-sIo" firstAttribute="centerY" secondItem="aNq-Lo-Tzm" secondAttribute="centerY" id="Qwy-NG-fYd"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="13d-Di-C8w" secondAttribute="trailing" id="3Kl-xu-ke4"/>
+                                                <constraint firstItem="13d-Di-C8w" firstAttribute="top" secondItem="aNq-Lo-Tzm" secondAttribute="topMargin" id="JT3-qg-Eul"/>
                                                 <constraint firstItem="pYm-Cz-iep" firstAttribute="centerY" secondItem="aNq-Lo-Tzm" secondAttribute="centerY" id="WO3-h5-29b"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="13d-Di-C8w" secondAttribute="bottom" id="giW-IM-cqd"/>
                                                 <constraint firstItem="pYm-Cz-iep" firstAttribute="leading" secondItem="aNq-Lo-Tzm" secondAttribute="leading" constant="16" id="jZF-ns-wjg"/>
-                                                <constraint firstAttribute="trailing" secondItem="Vff-Oj-sIo" secondAttribute="trailing" constant="16" id="qna-xw-Jv8"/>
+                                                <constraint firstItem="13d-Di-C8w" firstAttribute="leading" secondItem="aNq-Lo-Tzm" secondAttribute="leadingMargin" id="qBh-BI-PgQ"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -357,17 +359,20 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addPhotoLabel" destination="pYm-Cz-iep" id="7va-8l-dOE"/>
                         <outlet property="addressLabel" destination="HZ3-Vs-egV" id="keG-yH-rB4"/>
                         <outlet property="categoryLabel" destination="ji9-2m-bUg" id="DG3-dL-O4a"/>
                         <outlet property="dateLabel" destination="Z8W-sN-FNv" id="qs6-8A-Uya"/>
                         <outlet property="descriptionTextView" destination="cEO-Vt-cbh" id="eCh-d7-MYW"/>
+                        <outlet property="imageHeight" destination="ydr-cA-pOs" id="jVy-Tb-0YM"/>
+                        <outlet property="imageView" destination="13d-Di-C8w" id="WnP-o6-Sno"/>
                         <outlet property="latitudeLabel" destination="EYw-3O-2gd" id="AD1-2d-iXU"/>
                         <outlet property="longitudeLabel" destination="Udl-oK-GMa" id="1HN-4M-sMT"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EZf-hW-Q7C" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2735" y="86"/>
+            <point key="canvasLocation" x="2734.7826086956525" y="85.714285714285708"/>
         </scene>
         <!--Category Picker View Controller-->
         <scene sceneID="NuE-Pi-g9d">

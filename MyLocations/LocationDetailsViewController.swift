@@ -16,6 +16,9 @@ class LocationDetailsViewController: UITableViewController {
     @IBOutlet weak var longitudeLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var addPhotoLabel: UILabel!
+    @IBOutlet weak var imageHeight: NSLayoutConstraint!
     
     var coordinate = CLLocationCoordinate2D(latitude: 0,longitude: 0)
     var placemark: CLPlacemark?
@@ -34,12 +37,25 @@ class LocationDetailsViewController: UITableViewController {
         }
     }
     var descriptionText = ""
+    var image: UIImage? {
+        didSet {
+            if let theImage = image {
+                addPhotoLabel.text = ""
+                imageView.image = theImage
+                imageView.isHidden = false
+                let ratio = theImage.size.width / theImage.size.height
+                let height = imageView.frame.width / ratio
+                imageHeight.constant = height
+                tableView.reloadData()
+            }
+        }
+    }
+    var observer: Any!
     
     private let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
         formatter.timeStyle = .short
-        print("tag formatter \(formatter)")
         return formatter
     }()
     
@@ -63,6 +79,7 @@ class LocationDetailsViewController: UITableViewController {
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(hideKeyboard))
         gestureRecognizer.cancelsTouchesInView = false
         tableView.addGestureRecognizer(gestureRecognizer)
+        listenForBackgroundNotification()
     }
     
     
@@ -116,6 +133,22 @@ class LocationDetailsViewController: UITableViewController {
         descriptionTextView.resignFirstResponder()
     }
     
+    func listenForBackgroundNotification() {
+        observer = NotificationCenter.default.addObserver(forName: UIApplication.didEnterBackgroundNotification, object: nil, queue: OperationQueue.main) { [weak self] _ in
+            if let weakSelf = self {
+                if weakSelf.presentedViewController != nil {
+                    weakSelf.dismiss(animated: false, completion: nil)
+                }
+                weakSelf.descriptionTextView.resignFirstResponder()
+          }
+        }
+    }
+    
+    deinit {
+      print("*** deinit \(self)")
+      NotificationCenter.default.removeObserver(observer!)
+    }
+    
     // MARK:- Table View Delegates
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
       if indexPath.section == 0 || indexPath.section == 1 {
@@ -128,6 +161,11 @@ class LocationDetailsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
       if indexPath.section == 0 && indexPath.row == 0 {
         descriptionTextView.becomeFirstResponder()
+      } else {
+        if indexPath.section == 1 && indexPath.row == 0 {
+            tableView.deselectRow(at: indexPath, animated: true)
+            pickPhoto()
+        }
       }
     }
     
@@ -178,5 +216,61 @@ class LocationDetailsViewController: UITableViewController {
       let controller = segue.source as! CategoryPickerViewController
       categoryName = controller.selectedCategoryName
       categoryLabel.text = categoryName
+    }
+}
+
+extension LocationDetailsViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+  // MARK:- Image Helper Methods
+    func takePhotoWithCamera() {
+        let imagePicker = UIImagePickerController()
+        imagePicker.sourceType = .camera
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = true
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+    func choosePhotoFromLibrary() {
+        let imagePicker = UIImagePickerController()
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = true
+        present(imagePicker, animated: true, completion: nil)
+    }
+    
+    func pickPhoto() {
+      if true ||  UIImagePickerController.isSourceTypeAvailable(.camera) {
+            showPhotoMenu()
+      } else {
+            choosePhotoFromLibrary()
+      }
+    }
+    
+    func showPhotoMenu() {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let actCancel = UIAlertAction(title: "Cancel", style: .cancel,  handler: nil)
+        let actPhoto = UIAlertAction(title: "Take Photo",style: .default, handler: {_ in
+            self.takePhotoWithCamera()
+        })
+        let actLibrary = UIAlertAction(title: "Choose From Library", style: .default, handler: { _ in
+            self.choosePhotoFromLibrary()
+        })
+        alert.addAction(actCancel)
+        alert.addAction(actPhoto)
+        alert.addAction(actLibrary)
+        present(alert, animated: true, completion: nil)
+    }
+    
+
+
+    // MARK:- Image Picker Delegates
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        image = info[UIImagePickerController.InfoKey.editedImage] as? UIImage
+
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
     }
 }
