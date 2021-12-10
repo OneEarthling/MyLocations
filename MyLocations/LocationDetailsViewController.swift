@@ -40,13 +40,7 @@ class LocationDetailsViewController: UITableViewController {
     var image: UIImage? {
         didSet {
             if let theImage = image {
-                addPhotoLabel.text = ""
-                imageView.image = theImage
-                imageView.isHidden = false
-                let ratio = theImage.size.width / theImage.size.height
-                let height = imageView.frame.width / ratio
-                imageHeight.constant = height
-                tableView.reloadData()
+                show(image: theImage)
             }
         }
     }
@@ -63,6 +57,11 @@ class LocationDetailsViewController: UITableViewController {
         super.viewDidLoad()
         if let location = locationToEdit {
             title = "Edit Location"
+            if location.hasPhoto {
+                if let theImage = location.photoImage {
+                    show(image: theImage)
+                }
+            }
         }
         
         descriptionTextView.text = descriptionText
@@ -94,6 +93,7 @@ class LocationDetailsViewController: UITableViewController {
         } else {
             hudView.text = "Tagged"
             location = Location(context: managedObjectContext)
+            location.photoID = nil
         }
         
         location.locationDescription = descriptionTextView.text
@@ -103,6 +103,21 @@ class LocationDetailsViewController: UITableViewController {
         location.longitude = coordinate.longitude
         location.placemark = placemark
 
+        // Save image
+        if let image = image {
+          if !location.hasPhoto {
+            location.photoID = Location.nextPhotoID() as NSNumber
+          }
+          if let data = image.jpegData(compressionQuality: 0.5) {
+            
+                do {
+                    try data.write(to: location.photoURL, options: .atomic)
+                } catch {
+                    print("Error writing file: \(error)")
+                }
+          }
+        }
+        
         do {
             try managedObjectContext.save()
             let delayInSeconds = 0.6
@@ -115,9 +130,16 @@ class LocationDetailsViewController: UITableViewController {
         } catch {
             fatalCoreDataError(error)
         }
-        
-        
-
+    }
+    
+    func show(image: UIImage){
+        addPhotoLabel.text = ""
+        imageView.image = image
+        imageView.isHidden = false
+        let ratio = image.size.width / image.size.height
+        let height = imageView.frame.width / ratio
+        imageHeight.constant = height
+        tableView.reloadData()
     }
     
     @IBAction func cancel() {
@@ -239,7 +261,7 @@ extension LocationDetailsViewController: UIImagePickerControllerDelegate, UINavi
     }
     
     func pickPhoto() {
-      if true ||  UIImagePickerController.isSourceTypeAvailable(.camera) {
+      if UIImagePickerController.isSourceTypeAvailable(.camera) {
             showPhotoMenu()
       } else {
             choosePhotoFromLibrary()
